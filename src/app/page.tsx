@@ -1,15 +1,17 @@
+import Image from 'next/image';
 import Button from 'react-bootstrap/Button';
 
 export default function HomePage() {
   return (
     <main className="flex flex-col min-h-screen bg-green-900 text-white">
       <div className="flex flex-row justify-center">
-        <h1 className="mt-5 text-5xl">Basic Strategy</h1>
+        <h1 className="mt-3 text-5xl">Basic Strategy</h1>
       </div>
 
       <div className="flex flex-col flex-grow">
         <div className="flex-grow border border-white border-solid">
           Card div
+          <Image src="/public/png_cards/2_of_clubs.png" alt="Ace of Clubs" width={100} height={150} />
         </div>
 
         <div className="flex justify-end mt-2">
