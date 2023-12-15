@@ -33,7 +33,9 @@ export default function HomePage() {
             style={{ height: 150 }}
             className="flex flex-row justify-end pr-10"
           >
-            <Card front={front} back={back} />
+            <div className="diagonal-top-left">
+              <Card front={front} back={back} clickable={false} />
+            </div>
           </div>
 
           {/* Player Cards */}

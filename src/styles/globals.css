@@ -7,7 +7,7 @@
         transform: translate(0, 0);
     }
     to {
-        transform: translate(-100px, -100px); /* Adjust as needed */
+        transform: translate(-45vw, -100%); /* Adjust as needed */
     }
 }
 
@@ -20,12 +20,38 @@
     }
 }
 
+@keyframes diagonalMoveBottomLeft {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(-45vw, 100%);
+    }
+}
+
+@keyframes diagonalMoveBottomRight {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(100px, 100px); /* Adjust as needed */
+    }
+}
+
 .diagonal-top-left {
-    animation: diagonalMoveTopLeft 2s ease-in-out infinite alternate;
+    animation: diagonalMoveTopLeft 1s ease-in-out infinite;
 }
 
 .diagonal-top-right {
     animation: diagonalMoveTopRight 2s ease-in-out infinite alternate;
+}
+
+.diagonal-bottom-left {
+    animation: diagonalMoveBottomLeft 1s ease-in-out infinite;
+}
+
+.diagonal-bottom-right {
+    animation: diagonalMoveBottomRight 2s ease-in-out infinite alternate;
 }
 
 
