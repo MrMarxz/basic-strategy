@@ -6,9 +6,11 @@ import Card from "~/components/Card";
 export default function HomePage() {
   const front = "/svg_cards/ace_of_clubs.svg";
   const back = "/card_back.svg";
-  const [isDealingToPlayer, setIsDealingToPlayer] = useState(false);
-  const [isDealingToDealer, setIsDealingToDealer] = useState(false);
-  const [isCleared, setIsCleared] = useState(false);
+
+  const [isDealingPlayerFirstCard, setIsDealingPlayerFirstCard] = useState(false);
+  const [isDealingPlayerSecondCard, setIsDealingPlayerSecondCard] = useState(false);
+  const [isDealingDealerFirstCard, setIsDealingDealerFirstCard] = useState(false);
+  const [isDealingDealerSecondCard, setIsDealingDealerSecondCard] = useState(false);
 
   const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
@@ -29,14 +31,26 @@ export default function HomePage() {
   };
 
   const handleDeal = async () => {
-    await handleCardAction("Dealing to player first card", setIsDealingToPlayer, 1000);
-    await handleCardAction("Clearing classes", setIsCleared, 10);
-
-    await handleCardAction("Dealing to player second card", setIsDealingToPlayer, 1000);
-    await handleCardAction("Clearing classes", setIsCleared, 100);
-
-    await handleCardAction("Dealing to dealer", setIsDealingToDealer, 1000);
-    await handleCardAction("Clearing classes", setIsCleared, 100);
+    await handleCardAction(
+      "Dealing to player first card",
+      setIsDealingPlayerFirstCard,
+      1000,
+    );
+    await handleCardAction(
+      "Dealing to player second card",
+      setIsDealingPlayerSecondCard,
+      1000,
+    );
+    await handleCardAction(
+      "Dealing to dealer first card",
+      setIsDealingDealerFirstCard,
+      1000,
+    );
+    await handleCardAction(
+      "Dealing to dealer second card",
+      setIsDealingDealerSecondCard,
+      1000,
+    );
   };
 
   return (
@@ -52,11 +66,10 @@ export default function HomePage() {
         >
           {/* Dealer Cards */}
           <div style={{ height: 150 }} className="flex flex-row justify-center">
-            <div className="px-3">
-              <Card front={front} back={back} clickable={false} />
+            <div className={ isDealingDealerFirstCard ? "move-dealer-first-card" : "blank" }>
+              <Card front={front} back={back} />
             </div>
-            {/* Dealer's initial card */}
-            <div className="px-3">
+            <div className={ isDealingDealerSecondCard ? "move-dealer-second-card" : "blank"}>
               <Card front={front} back={back} />
             </div>
           </div>
@@ -66,28 +79,24 @@ export default function HomePage() {
             style={{ height: 150 }}
             className="flex flex-row justify-end pr-10"
           >
-            <div
-              className={
-                isDealingToDealer
-                  ? "diagonal-top-left"
-                  : isDealingToPlayer
-                    ? "diagonal-bottom-left"
-                    : isCleared
-                      ? "blank"
-                      : ""
-              }
-            >
-              {/* Base Card */}
-              <Card front={front} back={back} clickable={false} />
-            </div>
+            {/* Base Card */}
+            <Card front={front} back={back} clickable={false} />
           </div>
 
           {/* Player Cards */}
           <div style={{ height: 150 }} className="flex flex-row justify-center">
-            <div className="px-3">
+            <div
+              className={
+                isDealingPlayerFirstCard ? "move-player-first-card" : "blank"
+              }
+            >
               <Card front={front} back={back} />
             </div>
-            <div className="px-3">
+            <div
+              className={
+                isDealingPlayerSecondCard ? "move-player-second-card" : "blank"
+              }
+            >
               <Card front={front} back={back} />
             </div>
           </div>
