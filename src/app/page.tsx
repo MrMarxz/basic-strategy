@@ -12,6 +12,11 @@ export default function HomePage() {
   const [isDealingDealerFirstCard, setIsDealingDealerFirstCard] = useState(false);
   const [isDealingDealerSecondCard, setIsDealingDealerSecondCard] = useState(false);
 
+  const [isPlayerFirstCardFlipped, setIsPlayerFirstCardFlipped] = useState(false);
+  const [isPlayerSecondCardFlipped, setIsPlayerSecondCardFlipped] = useState(false);
+  const [isDealerFirstCardFlipped, setIsDealerFirstCardFlipped] = useState(false);
+  const [isDealerSecondCardFlipped, setIsDealerSecondCardFlipped] = useState(false);
+
   const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
   const handleCardAction = async (
@@ -36,21 +41,27 @@ export default function HomePage() {
       setIsDealingPlayerFirstCard,
       1000,
     );
+    setIsPlayerFirstCardFlipped(true);
+
     await handleCardAction(
       "Dealing to player second card",
       setIsDealingPlayerSecondCard,
       1000,
     );
+    setIsPlayerSecondCardFlipped(true);
+
     await handleCardAction(
       "Dealing to dealer first card",
       setIsDealingDealerFirstCard,
       1000,
     );
+
     await handleCardAction(
       "Dealing to dealer second card",
       setIsDealingDealerSecondCard,
       1000,
     );
+    setIsDealerSecondCardFlipped(true);
   };
 
   return (
@@ -67,10 +78,10 @@ export default function HomePage() {
           {/* Dealer Cards */}
           <div style={{ height: 150 }} className="flex flex-row justify-center">
             <div className={ isDealingDealerFirstCard ? "move-dealer-first-card" : "blank" }>
-              <Card front={front} back={back} />
+              <Card front={front} back={back} isFlipped={isDealerFirstCardFlipped} />
             </div>
             <div className={ isDealingDealerSecondCard ? "move-dealer-second-card" : "blank"}>
-              <Card front={front} back={back} />
+              <Card front={front} back={back} isFlipped={isDealerSecondCardFlipped} />
             </div>
           </div>
 
@@ -80,7 +91,7 @@ export default function HomePage() {
             className="flex flex-row justify-end pr-10"
           >
             {/* Base Card */}
-            <Card front={front} back={back} clickable={false} />
+            <Card front={front} back={back} isFlipped={false} />
           </div>
 
           {/* Player Cards */}
@@ -90,14 +101,14 @@ export default function HomePage() {
                 isDealingPlayerFirstCard ? "move-player-first-card" : "blank"
               }
             >
-              <Card front={front} back={back} />
+              <Card front={front} back={back} isFlipped={isPlayerFirstCardFlipped} />
             </div>
             <div
               className={
                 isDealingPlayerSecondCard ? "move-player-second-card" : "blank"
               }
             >
-              <Card front={front} back={back} />
+              <Card front={front} back={back} isFlipped={isPlayerSecondCardFlipped} />
             </div>
           </div>
         </div>
