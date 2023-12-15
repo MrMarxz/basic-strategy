@@ -1,10 +1,43 @@
 "use client";
+import { SetStateAction, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "~/components/Card";
 
 export default function HomePage() {
   const front = "/svg_cards/ace_of_clubs.svg";
   const back = "/card_back.svg";
+  const [isDealingToPlayer, setIsDealingToPlayer] = useState(false);
+  const [isDealingToDealer, setIsDealingToDealer] = useState(false);
+  const [isCleared, setIsCleared] = useState(false);
+
+  const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+
+  const handleCardAction = async (
+    actionMessage: string,
+    stateSetter: {
+      (value: SetStateAction<boolean>): void;
+      (value: SetStateAction<boolean>): void;
+      (value: SetStateAction<boolean>): void;
+      (arg0: boolean): void;
+    },
+    delayTime: number,
+  ) => {
+    console.log(actionMessage);
+    stateSetter(true);
+    await delay(delayTime);
+    stateSetter(false);
+  };
+
+  const handleDeal = async () => {
+    await handleCardAction("Dealing to player first card", setIsDealingToPlayer, 1000);
+    await handleCardAction("Clearing classes", setIsCleared, 10);
+
+    await handleCardAction("Dealing to player second card", setIsDealingToPlayer, 1000);
+    await handleCardAction("Clearing classes", setIsCleared, 100);
+
+    await handleCardAction("Dealing to dealer", setIsDealingToDealer, 1000);
+    await handleCardAction("Clearing classes", setIsCleared, 100);
+  };
 
   return (
     <main className="flex min-h-screen flex-col bg-green-900 text-white">
@@ -27,13 +60,24 @@ export default function HomePage() {
               <Card front={front} back={back} />
             </div>
           </div>
-          
+
           {/* Shoe Cards */}
           <div
             style={{ height: 150 }}
             className="flex flex-row justify-end pr-10"
           >
-            <div className="diagonal-top-left">
+            <div
+              className={
+                isDealingToDealer
+                  ? "diagonal-top-left"
+                  : isDealingToPlayer
+                    ? "diagonal-bottom-left"
+                    : isCleared
+                      ? "blank"
+                      : ""
+              }
+            >
+              {/* Base Card */}
               <Card front={front} back={back} clickable={false} />
             </div>
           </div>
@@ -58,6 +102,9 @@ export default function HomePage() {
               <Button variant="primary">SPLIT</Button>
               <Button variant="primary">SURRENDER</Button>
               <Button variant="primary">INSURANCE</Button>
+              <Button variant="primary" onClick={handleDeal}>
+                DEAL
+              </Button>
             </div>
           </div>
         </div>

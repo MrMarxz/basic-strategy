@@ -39,7 +39,7 @@
 }
 
 .diagonal-top-left {
-    animation: diagonalMoveTopLeft 1s ease-in-out infinite;
+    animation: diagonalMoveTopLeft 0.8s ease-in-out;
 }
 
 .diagonal-top-right {
@@ -47,7 +47,7 @@
 }
 
 .diagonal-bottom-left {
-    animation: diagonalMoveBottomLeft 1s ease-in-out infinite;
+    animation: diagonalMoveBottomLeft 0.8s ease-in-out;
 }
 
 .diagonal-bottom-right {
