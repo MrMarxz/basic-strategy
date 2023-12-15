@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes diagonalMove {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(-100px, -100px); /* Adjust as needed */
+    }
+}
+
+.diagonal-move {
+    animation: diagonalMove 2s ease-in-out infinite alternate;
+}

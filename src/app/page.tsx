@@ -11,7 +11,9 @@ export default function HomePage() {
       <div className="flex flex-col flex-grow">
         <div className="flex-grow border border-white border-solid">
           Card div
-          <Image src="/public/png_cards/2_of_clubs.png" alt="Ace of Clubs" width={100} height={150} />
+          <div className='diagonal-move'>
+            <Image src="/svg_cards/2_of_clubs.svg" alt="Ace of Clubs" width={100} height={150} />
+          </div>
         </div>
 
         <div className="flex justify-end mt-2">
