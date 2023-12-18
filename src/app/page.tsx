@@ -1,9 +1,12 @@
 "use client";
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "~/components/Card";
+import getCorrectAction from "~/utils/actions";
 
 export default function HomePage() {
+  const correctAction = getCorrectAction("4", ["5", "5"]);
+  console.log(correctAction);
   const front = "/svg_cards/ace_of_clubs.svg";
   const back = "/card_back.svg";
 
@@ -26,7 +29,6 @@ export default function HomePage() {
 
   useEffect(() => {
     // If the handleDeal is run, set all cards to be face down
-    console.log('handleDeal useEffect');
     setIsPlayerFirstCardFlipped(false);
     setIsPlayerSecondCardFlipped(false);
     setIsDealerFirstCardFlipped(false);

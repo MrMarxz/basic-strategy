@@ -1,0 +1,98 @@
+{
+    "2": {
+        "2": "hit",
+        "3": "hit",
+        "4": "hit",
+        "5": "double",
+        "6": "double",
+        "7": "hit",
+        "8": "hit",
+        "9": "hit",
+        "10": "hit",
+        "A": "hit"
+    },
+    "3": {
+        "2": "hit",
+        "3": "hit",
+        "4": "hit",
+        "5": "double",
+        "6": "double",
+        "7": "hit",
+        "8": "hit",
+        "9": "hit",
+        "10": "hit",
+        "A": "hit"
+    },
+    "4": {
+        "2": "hit",
+        "3": "hit",
+        "4": "double",
+        "5": "double",
+        "6": "double",
+        "7": "hit",
+        "8": "hit",
+        "9": "hit",
+        "10": "hit",
+        "A": "hit"
+    },
+    "5": {
+        "2": "hit",
+        "3": "hit",
+        "4": "double",
+        "5": "double",
+        "6": "double",
+        "7": "hit",
+        "8": "hit",
+        "9": "hit",
+        "10": "hit",
+        "A": "hit"
+    },
+    "6": {
+        "2": "hit",
+        "3": "double",
+        "4": "double",
+        "5": "double",
+        "6": "double",
+        "7": "hit",
+        "8": "hit",
+        "9": "hit",
+        "10": "hit",
+        "A": "hit"
+    },
+    "7": {
+        "2": "double",
+        "3": "double",
+        "4": "double",
+        "5": "double",
+        "6": "double",
+        "7": "stand",
+        "8": "stand",
+        "9": "hit",
+        "10": "hit",
+        "A": "hit"
+    },
+    "8": {
+        "2": "stand",
+        "3": "stand",
+        "4": "stand",
+        "5": "stand",
+        "6": "double",
+        "7": "stand",
+        "8": "stand",
+        "9": "stand",
+        "10": "stand",
+        "A": "stand"
+    },
+    "9": {
+        "2": "stand",
+        "3": "stand",
+        "4": "stand",
+        "5": "stand",
+        "6": "stand",
+        "7": "stand",
+        "8": "stand",
+        "9": "stand",
+        "10": "stand",
+        "A": "stand"
+    }
+}
