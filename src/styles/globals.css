@@ -22,7 +22,7 @@
 
 @keyframes movePlayerFirstCard {
   from {
-    transform: translate(40vw, -100%);
+    transform: translate(45vw, -100%);
   }
   to {
     transform: translate(0, 0);

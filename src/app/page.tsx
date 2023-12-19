@@ -1,16 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
-import { useEffect, useState } from "react";
+import { type SetStateAction, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "~/components/Card";
-import getCorrectAction from "~/utils/actions";
+import { getCorrectAction, getRandomCard } from "~/utils/actions";
 
 export default function HomePage() {
-  const correctAction = getCorrectAction("4", ["5", "5"]);
-  console.log(correctAction);
   const front = "/svg_cards/ace_of_clubs.svg";
   const back = "/card_back.svg";
 
   const [handleDealCount, setHandleDealCount] = useState(0);
+
+  const [playerFirstCardImagePath, setPlayerFirstCardImagePath] = useState(front);
+  const [playerSecondCardImagePath, setPlayerSecondCardImagePath] = useState(front);
+  const [dealerFirstCardImagePath, setDealerFirstCardImagePath] = useState(front);
 
   const [isDealingPlayerFirstCard, setIsDealingPlayerFirstCard] = useState(false);
   const [isDealingPlayerSecondCard, setIsDealingPlayerSecondCard] = useState(false);
@@ -27,15 +31,32 @@ export default function HomePage() {
   const [isDealerFirstCardHidden, setIsDealerFirstCardHidden] = useState(true);
   const [isDealerSecondCardHidden, setIsDealerSecondCardHidden] = useState(true);
 
+  const [newRoundStarted, setNewRoundStarted] = useState(0);
+
+  // useEffect(() => {
+  //   const randomCardData = getRandomCard();
+  //   console.log(randomCardData);
+  // }, []);
+
+
   useEffect(() => {
+
+    // Generate random cards for the player and dealer
+    const playerFirstCardData = getRandomCard();
+    const playerSecondCardData = getRandomCard();
+    const dealerFirstCardData = getRandomCard();
+
+    // Set the player and dealer cards
+    setPlayerFirstCardImagePath(playerFirstCardData.imagePath);
+    setPlayerSecondCardImagePath(playerSecondCardData.imagePath);
+    setDealerFirstCardImagePath(dealerFirstCardData.imagePath);
+
     // If the handleDeal is run, set all cards to be face down
     setIsPlayerFirstCardFlipped(false);
     setIsPlayerSecondCardFlipped(false);
     setIsDealerFirstCardFlipped(false);
     setIsDealerSecondCardFlipped(false);
-  }, [handleDealCount]);
 
-  useEffect(() => {
     // If the handleDeal is run, set all cards to be hidden for 0.2 seconds
     setTimeout(() => {
       setIsPlayerFirstCardHidden(false);
@@ -125,10 +146,10 @@ export default function HomePage() {
           {/* Dealer Cards */}
           <div style={{ height: 150 }} className="flex flex-row justify-center">
             <div className={ `${isDealingDealerFirstCard ? "move-dealer-first-card" : "blank"} ${isDealerFirstCardHidden ? "hidden" : "visible"}`  }>
-              <Card front={front} back={back} isFlipped={isDealerFirstCardFlipped} />
+              <Card front={front} isFlipped={isDealerFirstCardFlipped} />
             </div>
             <div className={ `${isDealingDealerSecondCard ? "move-dealer-second-card" : "blank"} ${isDealerSecondCardHidden ? "hidden" : "visible" }` }>
-              <Card front={front} back={back} isFlipped={isDealerSecondCardFlipped} />
+              <Card front={dealerFirstCardImagePath} isFlipped={isDealerSecondCardFlipped} />
             </div>
           </div>
 
@@ -138,7 +159,7 @@ export default function HomePage() {
             className="flex flex-row justify-end pr-10"
           >
             {/* Base Card */}
-            <Card front={front} back={back} isFlipped={false} />
+            <Card front={front} isFlipped={false} />
           </div>
 
           {/* Player Cards */}
@@ -148,14 +169,14 @@ export default function HomePage() {
                 `${isDealingPlayerFirstCard ? "move-player-first-card" : "blank"} ${isPlayerFirstCardHidden ? "hidden" : "visible"}`
               }
             >
-              <Card front={front} back={back} isFlipped={isPlayerFirstCardFlipped} />
+              <Card front={playerFirstCardImagePath} isFlipped={isPlayerFirstCardFlipped} />
             </div>
             <div
               className={
                 `${isDealingPlayerSecondCard ? "move-player-second-card" : "blank"} ${isPlayerSecondCardHidden ? "hidden" : "visible"}`
               }
             >
-              <Card front={front} back={back} isFlipped={isPlayerSecondCardFlipped} />
+              <Card front={playerSecondCardImagePath} isFlipped={isPlayerSecondCardFlipped} />
             </div>
           </div>
         </div>

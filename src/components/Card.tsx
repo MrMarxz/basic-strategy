@@ -7,17 +7,16 @@ import Button from "react-bootstrap/Button";
 
 type CardProps = {
   front: string;
-  back: string;
   isFlipped: boolean;
 };
 
-export default function Card({ front, back, isFlipped }: CardProps) {
+export default function Card({ front, isFlipped }: CardProps) {
 
   return (
     <div className="mt-3">
       <div className={`card ${isFlipped ? "flipped" : ""}`}>
         <div className="card-front">
-          <Image src={back} alt="Ace of Clubs" width={100} height={150} />
+          <Image src="/card_back.svg" alt="Ace of Clubs" width={100} height={150} />
         </div>
         <div className="card-back">
           <Image src={front} alt="Ace of Clubs" width={100} height={150} />
