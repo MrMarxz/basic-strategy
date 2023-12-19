@@ -3,6 +3,7 @@
 "use client";
 import { type SetStateAction, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
+import { set } from "zod";
 import Card from "~/components/Card";
 import { getCorrectAction, getRandomCard } from "~/utils/actions";
 
@@ -31,12 +32,9 @@ export default function HomePage() {
   const [isDealerFirstCardHidden, setIsDealerFirstCardHidden] = useState(true);
   const [isDealerSecondCardHidden, setIsDealerSecondCardHidden] = useState(true);
 
-  const [newRoundStarted, setNewRoundStarted] = useState(0);
+  const [correctAction, setCorrectAction] = useState('');
 
-  // useEffect(() => {
-  //   const randomCardData = getRandomCard();
-  //   console.log(randomCardData);
-  // }, []);
+  const [newRoundStarted, setNewRoundStarted] = useState(0);
 
 
   useEffect(() => {
@@ -50,6 +48,19 @@ export default function HomePage() {
     setPlayerFirstCardImagePath(playerFirstCardData.imagePath);
     setPlayerSecondCardImagePath(playerSecondCardData.imagePath);
     setDealerFirstCardImagePath(dealerFirstCardData.imagePath);
+
+    console.log('=====================');
+    console.log('player first card value', playerFirstCardData.cardValue);
+    console.log('player second card value', playerSecondCardData.cardValue);
+    console.log('dealer first card value', dealerFirstCardData.cardValue);
+
+    // Get the correct action for the player
+    const correctAction: string = getCorrectAction(dealerFirstCardData.cardValue, [playerFirstCardData.cardValue, playerSecondCardData.cardValue]);
+    setCorrectAction(correctAction);
+    console.log('CORRECT ACTION: ', correctAction);
+    console.log('=====================');
+
+    // console.log('correct action', getCorrectAction("7", ["3", "5"]));
 
     // If the handleDeal is run, set all cards to be face down
     setIsPlayerFirstCardFlipped(false);
