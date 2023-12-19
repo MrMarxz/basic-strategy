@@ -3,6 +3,7 @@
 "use client";
 import { type SetStateAction, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
+import toast from "react-hot-toast";
 import { set } from "zod";
 import Card from "~/components/Card";
 import { getCorrectAction, getRandomCard } from "~/utils/actions";
@@ -38,7 +39,6 @@ export default function HomePage() {
 
 
   useEffect(() => {
-
     // Generate random cards for the player and dealer
     const playerFirstCardData = getRandomCard();
     const playerSecondCardData = getRandomCard();
@@ -57,10 +57,6 @@ export default function HomePage() {
     // Get the correct action for the player
     const correctAction: string = getCorrectAction(dealerFirstCardData.cardValue, [playerFirstCardData.cardValue, playerSecondCardData.cardValue]);
     setCorrectAction(correctAction);
-    console.log('CORRECT ACTION: ', correctAction);
-    console.log('=====================');
-
-    // console.log('correct action', getCorrectAction("7", ["3", "5"]));
 
     // If the handleDeal is run, set all cards to be face down
     setIsPlayerFirstCardFlipped(false);
