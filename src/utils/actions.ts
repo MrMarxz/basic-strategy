@@ -38,12 +38,12 @@ export function getCorrectAction(dealerUpcard: string, playerCards: [string, str
         
         // Check if both cards are the same and if the player should split
         if (playerCards[0] === playerCards[1]) {
-            const shouldSplit = parsedSplitTable[playerTotal][dealerUpcard];
+            const shouldSplit = parsedSplitTable[playerCards[0]][dealerUpcard];
             if (shouldSplit) return 'split';
         }
 
         // 8 and below is always a hit
-        else if (playerTotal <= 8) {
+        if (playerTotal <= 8) {
             return 'hit';
         }
 

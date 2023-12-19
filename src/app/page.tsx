@@ -139,6 +139,27 @@ export default function HomePage() {
     setIsDealerSecondCardFlipped(true);
   };
 
+  const checkSelectedAction = async (selectedAction: string) => {
+
+    if (selectedAction === correctAction) {
+      toast.success("Correct!", {
+        duration: 2500,
+      });
+    } else {
+      toast.error(`The correct action was: ${correctAction}`, {
+        duration: 2500,
+      });
+    }
+
+    setTimeout(() => {
+      handleDeal().then(() => {
+        console.log('New round started');
+      }).catch((error) => {
+        console.log(error);
+      });
+    }, 2500);
+  };
+
   return (
     <main className="flex min-h-screen flex-col bg-green-900 text-white">
       <div className="flex flex-col">
@@ -191,12 +212,12 @@ export default function HomePage() {
         <div className="flex flex-col">
           <div className="mt-2 flex justify-end">
             <div className="grid w-1/3 grid-cols-2 gap-4 border border-solid border-white p-3">
-              <Button variant="primary">HIT</Button>
-              <Button variant="primary">STAND</Button>
-              <Button variant="primary">DOUBLE</Button>
-              <Button variant="primary">SPLIT</Button>
-              <Button variant="primary">SURRENDER</Button>
-              <Button variant="primary">INSURANCE</Button>
+            <Button variant="primary" onClick={() => checkSelectedAction("hit")}>HIT</Button>
+            <Button variant="primary" onClick={() => checkSelectedAction("stand")}>STAND</Button>
+            <Button variant="primary" onClick={() => checkSelectedAction("double")}>DOUBLE</Button>
+            <Button variant="primary" onClick={() => checkSelectedAction("split")}>SPLIT</Button>
+            <Button variant="primary" onClick={() => checkSelectedAction("surrender")}>SURRENDER</Button>
+            <Button variant="primary" onClick={() => checkSelectedAction("insurance")}>INSURANCE</Button>
               <Button variant="primary" onClick={handleDeal}>
                 DEAL
               </Button>
