@@ -1,18 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use client";
-import { type SetStateAction, useEffect, useState } from "react";
+import { type SetStateAction, useEffect, useState, useRef } from "react";
 import Button from "react-bootstrap/Button";
 import toast from "react-hot-toast";
-import { set } from "zod";
 import Card from "~/components/Card";
 import { getCorrectAction, getRandomCard } from "~/utils/actions";
 
 export default function HomePage() {
   const front = "/svg_cards/ace_of_clubs.svg";
-  const back = "/card_back.svg";
 
   const [handleDealCount, setHandleDealCount] = useState(0);
+  const isInitialMount = useRef(true);
 
   const [playerFirstCardImagePath, setPlayerFirstCardImagePath] =
     useState(front);
@@ -48,53 +47,58 @@ export default function HomePage() {
 
   const [correctAction, setCorrectAction] = useState("");
 
-  const [newRoundStarted, setNewRoundStarted] = useState(0);
-
   useEffect(() => {
-    // Generate random cards for the player and dealer
-    const playerFirstCardData = getRandomCard();
-    const playerSecondCardData = getRandomCard();
-    const dealerFirstCardData = getRandomCard();
+    if (isInitialMount.current) {
+      console.log("Initial mount");
+      isInitialMount.current = false;
+    }
+    else {
 
-    // Set the player and dealer cards
-    setPlayerFirstCardImagePath(playerFirstCardData.imagePath);
-    setPlayerSecondCardImagePath(playerSecondCardData.imagePath);
-    setDealerFirstCardImagePath(dealerFirstCardData.imagePath);
-
-    console.log("=====================");
-    console.log("player first card value", playerFirstCardData.cardValue);
-    console.log("player second card value", playerSecondCardData.cardValue);
-    console.log("dealer first card value", dealerFirstCardData.cardValue);
-
-    // Get the correct action for the player
-    const correctAction: string = getCorrectAction(
-      dealerFirstCardData.cardValue,
-      [playerFirstCardData.cardValue, playerSecondCardData.cardValue],
-    );
-    setCorrectAction(correctAction);
-
-    // If the handleDeal is run, set all cards to be face down
-    setIsPlayerFirstCardFlipped(false);
-    setIsPlayerSecondCardFlipped(false);
-    setIsDealerFirstCardFlipped(false);
-    setIsDealerSecondCardFlipped(false);
-
-    // If the handleDeal is run, set all cards to be hidden for 0.2 seconds
-    setTimeout(() => {
-      setIsPlayerFirstCardHidden(false);
-    }, 200);
-
-    setTimeout(() => {
-      setIsPlayerSecondCardHidden(false);
-    }, 1200);
-
-    setTimeout(() => {
-      setIsDealerFirstCardHidden(false);
-    }, 2200);
-
-    setTimeout(() => {
-      setIsDealerSecondCardHidden(false);
-    }, 3200);
+      // Generate random cards for the player and dealer
+      const playerFirstCardData = getRandomCard();
+      const playerSecondCardData = getRandomCard();
+      const dealerFirstCardData = getRandomCard();
+  
+      // Set the player and dealer cards
+      setPlayerFirstCardImagePath(playerFirstCardData.imagePath);
+      setPlayerSecondCardImagePath(playerSecondCardData.imagePath);
+      setDealerFirstCardImagePath(dealerFirstCardData.imagePath);
+  
+      console.log("=====================");
+      console.log("player first card value", playerFirstCardData.cardValue);
+      console.log("player second card value", playerSecondCardData.cardValue);
+      console.log("dealer first card value", dealerFirstCardData.cardValue);
+  
+      // Get the correct action for the player
+      const correctAction: string = getCorrectAction(
+        dealerFirstCardData.cardValue,
+        [playerFirstCardData.cardValue, playerSecondCardData.cardValue],
+      );
+      setCorrectAction(correctAction);
+  
+      // If the handleDeal is run, set all cards to be face down
+      setIsPlayerFirstCardFlipped(false);
+      setIsPlayerSecondCardFlipped(false);
+      setIsDealerFirstCardFlipped(false);
+      setIsDealerSecondCardFlipped(false);
+  
+      // If the handleDeal is run, set all cards to be hidden for 0.2 seconds
+      setTimeout(() => {
+        setIsPlayerFirstCardHidden(false);
+      }, 200);
+  
+      setTimeout(() => {
+        setIsPlayerSecondCardHidden(false);
+      }, 1200);
+  
+      setTimeout(() => {
+        setIsDealerFirstCardHidden(false);
+      }, 2200);
+  
+      setTimeout(() => {
+        setIsDealerSecondCardHidden(false);
+      }, 3200);
+    }
   }, [handleDealCount]);
 
   const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
