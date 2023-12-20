@@ -4,7 +4,7 @@
 
 @keyframes moveDealerFirstCard {
   from {
-    transform: translate(45vw, 100%);
+    transform: translate(400px, 100%);
   }
   to {
     transform: translate(0, 0);
@@ -13,7 +13,7 @@
 
 @keyframes moveDealerSecondCard {
   from {
-    transform: translate(40vw, 100%);
+    transform: translate(360px, 100%);
   }
   to {
     transform: translate(0, 0);
@@ -22,7 +22,7 @@
 
 @keyframes movePlayerFirstCard {
   from {
-    transform: translate(45vw, -100%);
+    transform: translate(400px, -100%);
   }
   to {
     transform: translate(0, 0);
@@ -31,7 +31,7 @@
 
 @keyframes movePlayerSecondCard {
   from {
-    transform: translate(40vw, -100%);
+    transform: translate(360px, -100%);
   }
   to {
     transform: translate(0, 0);

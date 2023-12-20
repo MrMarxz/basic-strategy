@@ -187,22 +187,22 @@ export default function HomePage() {
         </div>
 
         <div
-          style={{ height: 500 }}
-          className="mt-2 flex h-fit w-3/4 flex-col border border-solid border-white"
+          style={{ height: 500, width: 1000 }}
+          className="mt-2 flex h-fit flex-col border border-solid border-white"
         >
           {/* Dealer Cards */}
           <div style={{ height: 150 }} className="flex flex-row justify-center">
             <div
               className={`${
                 isDealingDealerFirstCard ? "move-dealer-first-card" : "blank"
-              } ${isDealerFirstCardHidden ? "hidden" : "visible"}`}
+              } ${isDealerFirstCardHidden ? "opacity-0" : "opacity-100"}`}
             >
               <Card front={front} isFlipped={isDealerFirstCardFlipped} />
             </div>
             <div
               className={`${
                 isDealingDealerSecondCard ? "move-dealer-second-card" : "blank"
-              } ${isDealerSecondCardHidden ? "hidden" : "visible"}`}
+              } ${isDealerSecondCardHidden ? "opacity-0" : "opacity-100"}`}
             >
               <Card
                 front={dealerFirstCardImagePath}
@@ -225,7 +225,7 @@ export default function HomePage() {
             <div
               className={`${
                 isDealingPlayerFirstCard ? "move-player-first-card" : "blank"
-              } ${isPlayerFirstCardHidden ? "hidden" : "visible"}`}
+              } ${isPlayerFirstCardHidden ? "opacity-0" : "opacity-100"}`}
             >
               <Card
                 front={playerFirstCardImagePath}
@@ -235,7 +235,7 @@ export default function HomePage() {
             <div
               className={`${
                 isDealingPlayerSecondCard ? "move-player-second-card" : "blank"
-              } ${isPlayerSecondCardHidden ? "hidden" : "visible"}`}
+              } ${isPlayerSecondCardHidden ? "opacity-0" : "opcaity-100"}`}
             >
               <Card
                 front={playerSecondCardImagePath}
