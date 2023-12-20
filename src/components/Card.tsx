@@ -16,7 +16,7 @@ export default function Card({ front, isFlipped }: CardProps) {
     <div className="mt-3">
       <div className={`card ${isFlipped ? "flipped" : ""}`}>
         <div className="card-front">
-          <Image src="/card_back.svg" alt="Ace of Clubs" width={100} height={150} />
+          <Image src="/card_back.svg" alt="Ace of Clubs" width={100} height={140} />
         </div>
         <div className="card-back">
           <Image src={front} alt="Ace of Clubs" width={100} height={150} />

@@ -45,7 +45,7 @@
         "8": "double",
         "9": "double",
         "10": "double",
-        "A": "hit"
+        "A": "double"
     },
     "12": {
         "2": "hit",
@@ -92,7 +92,7 @@
         "7": "hit",
         "8": "hit",
         "9": "hit",
-        "10": "hit",
+        "10": "surrender",
         "A": "hit"
     },
     "16": {
@@ -103,9 +103,9 @@
         "6": "stand",
         "7": "hit",
         "8": "hit",
-        "9": "hit",
-        "10": "hit",
-        "A": "hit"
+        "9": "surrender",
+        "10": "surrender",
+        "A": "surrender"
     },
     "17": {
         "2": "stand",

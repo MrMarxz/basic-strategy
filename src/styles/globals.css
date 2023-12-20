@@ -63,7 +63,7 @@
 
 .card {
   width: 100px; /* Adjust the size as needed */
-  height: 150px;
+  height: 140px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.6s;
