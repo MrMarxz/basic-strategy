@@ -11,6 +11,11 @@ export default function HomePage() {
   const front = "/svg_cards/ace_of_clubs.svg";
 
   const [handleDealCount, setHandleDealCount] = useState(0);
+  const [correctActionCount, setCorrectActionCount] = useState(0);
+  const [playerTotalRounds, setPlayerTotalRounds] = useState(0);
+  const [accuracy, setAccuracy] = useState(0);
+
+
   const isInitialMount = useRef(true);
 
   const [playerFirstCardImagePath, setPlayerFirstCardImagePath] =
@@ -158,11 +163,29 @@ export default function HomePage() {
   };
 
   const checkSelectedAction = async (selectedAction: string) => {
+    // Increment the playerTotalRounds
+    const newPlayerTotalRounds = playerTotalRounds + 1;
+    setPlayerTotalRounds(newPlayerTotalRounds);
     if (selectedAction === correctAction) {
+
+      // Increment the correctActionCount
+      const newCorrectActionCount = correctActionCount + 1;
+      setCorrectActionCount(newCorrectActionCount);
+
+      // Calculate the accuracy with no decimal places
+      const rawAccuracy = (newCorrectActionCount / newPlayerTotalRounds) * 100;
+      const roundedAccuracy = Math.floor(rawAccuracy);
+      setAccuracy(roundedAccuracy);
+
       toast.success("Correct!", {
         duration: 2000,
       });
     } else {
+      // Calculate the accuracy with no decimal places
+      const rawAccuracy = (correctActionCount / newPlayerTotalRounds) * 100;
+      const roundedAccuracy = Math.floor(rawAccuracy);
+      setAccuracy(roundedAccuracy);
+
       toast.error(`The correct action was: ${correctAction}`, {
         duration: 2000,
       });
@@ -246,7 +269,11 @@ export default function HomePage() {
         </div>
       </div>
       <div className="mt-5 flex flex-row justify-center">
-        <div className="grid grid-cols-2 gap-4 border border-solid border-white p-3">
+        <div style={{ width: 300 }} className="border border-solid border-white flex flex-col mr-10 items-center">
+          <h3 className="text-2xl">Accuracy: {accuracy}</h3>
+          <h3 className="text-2xl">{correctActionCount} of {playerTotalRounds} hands</h3>
+        </div>
+        <div style={{ width: 500 }} className="grid grid-cols-2 gap-4 border border-solid border-white p-3">
           <Button variant="primary" onClick={() => checkSelectedAction("hit")}>
             HIT
           </Button>
