@@ -55,4 +55,4 @@ The site contains 4 important directories which are listed below:
 
 - `app` : Contains the main page and layout.
 - `styles` : contains the styling for the whole site. This includes all the animations.
-- utils: Contains a big part of the logic. It has an `actions.ts` file which has `getCorrectAction` and `getRandomCard`. Further in this directory are all of the totals and combinations of correct actions to take for each hand that is dealt.
+- `utils`: Contains a big part of the logic. It has an `actions.ts` file which has `getCorrectAction` and `getRandomCard`. Further in this directory are all of the totals and combinations of correct actions to take for each hand that is dealt.
