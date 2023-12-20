@@ -6,7 +6,7 @@ This project is a web application designed to help users practice and master the
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
-- Node.js v18.17.0 or greater
+- Node.js `v18.17.0` or greater
 
 ## Installation
 
