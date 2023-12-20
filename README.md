@@ -2,12 +2,6 @@
 
 This project is a web application designed to help users practice and master the basic strategy of Blackjack. Built with React and Tailwind CSS, it offers an interactive and engaging way to learn and improve your Blackjack skills.
 
-## Features
-
-- **Interactive Practice**: Users can practice Blackjack strategies in a simulated environment.
-- **Responsive Design**: Built with Tailwind CSS for a responsive, mobile-first design.
-- **Strategy Guidance**: Offers guidance on the basic strategy for each hand dealt.
-- **Dynamic Card Display**: Features a Card component that shows both the back and the front of the cards.
 
 ## Prerequisites
 
